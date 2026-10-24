@@ -1,0 +1,255 @@
+/* Navbar */
+.food-navbar {
+  min-height: 75px;
+  padding: 0.7rem 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Brand */
+.food-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #222 !important;
+  letter-spacing: -0.5px;
+}
+
+.brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: #fff0e8;
+  color: #f15a24;
+  font-size: 1.2rem;
+  transition: 0.3s ease;
+}
+
+.food-brand:hover .brand-icon {
+  background: #f15a24;
+  color: white;
+  transform: rotate(-8deg);
+}
+
+.brand-name span {
+  color: #f15a24;
+}
+
+/* Navigation links */
+.food-nav-link {
+  color: #444 !important;
+  font-weight: 500;
+  padding: 0.65rem 1rem !important;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.food-nav-link:hover {
+  color: #f15a24 !important;
+  background: #fff0e8;
+}
+
+/* Logout button */
+.logout-btn {
+  color: #d94714 !important;
+  border: 1px solid #f5c5b3;
+  border-radius: 10px;
+  padding: 0.6rem 1rem !important;
+  font-weight: 500;
+  transition: 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: #fff0e8;
+}
+
+/* Mobile responsive */
+@media (max-width: 575.98px) {
+  .food-navbar .navbar-collapse {
+    padding-top: 1rem;
+  }
+
+  .food-navbar .navbar-nav {
+    align-items: stretch !important;
+  }
+
+  .food-navbar .login-btn,
+  .food-navbar .logout-btn {
+    text-align: center;
+    margin-top: 0.4rem;
+  }
+}
+
+/* Navbar */
+.food-navbar {
+  min-height: 78px;
+  padding: 0.5rem 0;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.food-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 750;
+  color: #222;
+  text-decoration: none;
+}
+
+.brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  color: #f15a24;
+  background: #fff0e8;
+}
+
+.brand-orange {
+  color: #f15a24;
+}
+
+/* Desktop links */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.desktop-nav .nav-link {
+  color: #444;
+  text-decoration: none;
+  padding: 0.6rem 0.8rem;
+  border-radius: 9px;
+}
+
+.desktop-nav .nav-link:hover {
+  color: #f15a24;
+  background: #fff0e8;
+}
+
+/* Login button */
+.login-btn {
+  color: #444 !important;
+  padding: 0.65rem 1.25rem !important;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.login-btn:hover {
+  background: #d94714 !important;
+  color: #444 !important;
+  transform: translateY(-1px);
+}
+.desktop-nav .logout-btn {
+  color: #f15a24;
+}
+
+/* Hamburger */
+.mobile-menu-btn {
+  border-radius: 10px;
+  padding: 0.5rem 0.7rem;
+  box-shadow: none !important;
+}
+
+/* Sidebar */
+.food-sidebar {
+  width: 300px !important;
+  max-width: 85vw;
+  border: none;
+}
+
+.food-sidebar .offcanvas-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid #eee;
+}
+
+.food-sidebar .offcanvas-title {
+  font-size: 1.3rem;
+}
+
+.food-sidebar .offcanvas-body {
+  padding: 1.25rem;
+}
+
+.sidebar-heading {
+  color: #999;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  color: #333;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.sidebar-link i {
+  width: 22px;
+  color: #f15a24;
+  text-align: center;
+}
+
+.sidebar-link:hover {
+  background: #fff0e8;
+  color: #f15a24;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: #f7f7f7;
+  border-radius: 10px;
+  color: #555;
+}
+
+.sidebar-user i {
+  color: #f15a24;
+}
+
+.logout-link {
+  color: #dc3545;
+}
+
+.logout-link i {
+  color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 575.98px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .food-navbar .container-fluid {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 576px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}

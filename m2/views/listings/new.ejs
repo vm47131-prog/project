@@ -1,0 +1,138 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mb-2">
+  <div class="col-8 offset-2">
+    <h3>Add a New Food Item</h3>
+    <br> 
+     
+    <form
+      method="POST"
+      action="/listings/insertnew"
+      novalidate
+      class="needs-validation"
+    >
+      <!-- Food Name -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Food Item Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter food name"
+          name="listing[name]"
+          class="form-control"
+          required
+        >
+        <div class="invalid-feedback">
+          Please provide food name.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          name="listing[description]"
+          placeholder="Enter food description"
+          class="form-control"
+          minlength="10"
+          required
+        ></textarea>
+        <div class="invalid-feedback">
+          Description must be at least 10 characters.
+        </div>
+      </div>
+
+      <!-- Price and Category -->
+      <div class="row">
+        <div class="mb-3 col-md-5">
+          <label for="price" class="form-label">Price (₹)</label>
+          <input
+            type="number"
+            id="price"
+            value="99"
+            min="0"
+            name="listing[price]"
+            class="form-control"
+            required
+          >
+          <div class="invalid-feedback">
+            Please enter a valid price.
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-7">
+          <label for="category" class="form-label">Food Category</label>
+          <select
+            id="category"
+            name="listing[category]"
+            class="form-select"
+            required
+          >
+            <option value="">Select category</option>
+            <option value="Burger">Burger</option>
+            <option value="Pizza">Pizza</option>
+            <option value="Biryani">Biryani</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Starters">Starters</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Beverages">Beverages</option>
+            <option value="North Indian">North Indian</option>
+            <option value="South Indian">South Indian</option>
+          </select>
+          <div class="invalid-feedback">
+            Please select a category.
+          </div>
+        </div>
+      </div>
+
+      <!-- Restaurant -->
+      <div class="mb-3">
+        <label for="restaurant" class="form-label">Restaurant Name</label>
+        <input
+          type="text"
+          id="restaurant"
+          name="listing[restaurant]"
+          placeholder="Enter restaurant name"
+          class="form-control"
+          required
+        >
+        <div class="invalid-feedback">
+          Please provide restaurant name.
+        </div>
+      </div>
+
+      <!-- Delivery Time -->
+      <div class="mb-3">
+        <label for="deliveryTime" class="form-label">Delivery Time</label>
+        <input
+          type="text"
+          id="deliveryTime"
+          name="listing[deliveryTime]"
+          value="20-30 min"
+          class="form-control"
+          required
+        >
+      </div>
+
+      <!-- Food Type -->
+      <div class="mb-3">
+        <label for="isVeg" class="form-label">Food Type</label>
+        <select
+          id="isVeg"
+          name="listing[isVeg]"
+          class="form-select"
+          required
+        >
+          <option value="true">Veg</option>
+          <option value="false">Non-Veg</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-dark add-btn">
+        Add Food
+      </button>
+    </form>
+  </div>
+</div>
+

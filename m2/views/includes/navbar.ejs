@@ -1,0 +1,105 @@
+<nav class="navbar bg-white border-bottom sticky-top food-navbar">
+  <div class="container-fluid px-3">
+<!-- Logo -->
+    <a class="navbar-brand food-brand" href="/listings">
+      <span class="brand-icon">
+        <i class="fa-solid fa-utensils"></i>
+      </span>
+      <span>Foodie<span class="brand-orange">Hub</span></span>
+    </a>
+
+    <!-- Hamburger: mobile only -->
+    <button
+      class="navbar-toggler mobile-menu-btn"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#foodSidebar"
+      aria-controls="foodSidebar"
+      aria-label="Open menu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Desktop navigation -->
+    <div class="desktop-nav">
+      <a href="/listings" class="nav-link">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+
+      <a href="/listings/new" class="nav-link">
+        <i class="fa-solid fa-plus"></i> Add Food
+      </a>
+
+      <% if (!currUser) { %>
+        <a href="/signUp" class="nav-link">Sign up</a>
+        <a href="/login" class="nav-link login-btn">Login</a>
+      <% } else { %>
+        <span class="nav-link text-secondary">
+          <i class="fa-regular fa-user"></i>
+          <%= currUser.username %>
+        </span>
+        <a href="/logout" class="nav-link logout-btn">Logout</a>
+      <% } %>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile side slider -->
+<div
+  class="offcanvas offcanvas-end food-sidebar"
+  tabindex="-1"
+  id="foodSidebar"
+  aria-labelledby="foodSidebarLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title food-brand" id="foodSidebarLabel">
+      <i class="fa-solid fa-utensils brand-orange"></i>
+      Foodie<span class="brand-orange">Hub</span>
+    </h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <p class="sidebar-heading">MENU</p>
+
+    <a href="/listings" class="sidebar-link">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+
+    <a href="/listings/new" class="sidebar-link">
+      <i class="fa-solid fa-plus"></i>
+      <span>Add Food</span>
+    </a>
+
+    <hr>
+
+    <% if (!currUser) { %>
+      <a href="/signUp" class="sidebar-link">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>Sign up</span>
+      </a>
+
+      <a href="/login" class="sidebar-link">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span>Login</span>
+      </a>
+    <% } else { %>
+      <div class="sidebar-user">
+        <i class="fa-regular fa-user"></i>
+        <span><%= currUser.username %></span>
+      </div>
+
+      <a href="/logout" class="sidebar-link logout-link">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+    <% } %>
+  </div>
+</div>

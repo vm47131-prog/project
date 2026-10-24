@@ -1,0 +1,114 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h3>Edit Food Item</h3>
+
+    <form
+      method="POST"
+      action="/listings/<%= food._id %>/update?_method=PUT"
+      class="needs-validation"
+      novalidate
+    >
+      <div class="mb-3">
+        <label for="name" class="form-label">Food Name</label>
+        <input
+          type="text"
+          id="name"
+          value="<%= food.name %>"
+          name="listing[name]"
+          class="form-control"
+          required
+        >
+        <div class="invalid-feedback">Please enter food name.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          name="listing[description]"
+          class="form-control"
+          required
+        ><%= food.description %></textarea>
+        <div class="invalid-feedback">Please enter a description.</div>
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-md-5">
+          <label for="price" class="form-label">Price (₹)</label>
+          <input
+            type="number"
+            id="price"
+            value="<%= food.price %>"
+            name="listing[price]"
+            min="0"
+            class="form-control"
+            required
+          >
+        </div>
+
+        <div class="mb-3 col-md-7">
+          <label for="category" class="form-label">Category</label>
+          <select
+            id="category"
+            name="listing[category]"
+            class="form-select"
+            required
+          >
+            <option value="Burger" <%= food.category === "Burger" ? "selected" : "" %>>Burger</option>
+            <option value="Pizza" <%= food.category === "Pizza" ? "selected" : "" %>>Pizza</option>
+            <option value="Biryani" <%= food.category === "Biryani" ? "selected" : "" %>>Biryani</option>
+            <option value="Snacks" <%= food.category === "Snacks" ? "selected" : "" %>>Snacks</option>
+            <option value="Starters" <%= food.category === "Starters" ? "selected" : "" %>>Starters</option>
+            <option value="Dessert" <%= food.category === "Dessert" ? "selected" : "" %>>Dessert</option>
+            <option value="Beverages" <%= food.category === "Beverages" ? "selected" : "" %>>Beverages</option>
+            <option value="North Indian" <%= food.category === "North Indian" ? "selected" : "" %>>North Indian</option>
+            <option value="South Indian" <%= food.category === "South Indian" ? "selected" : "" %>>South Indian</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="restaurant" class="form-label">Restaurant Name</label>
+        <input
+          type="text"
+          id="restaurant"
+          value="<%= food.restaurant %>"
+          name="listing[restaurant]"
+          class="form-control"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="deliveryTime" class="form-label">Delivery Time</label>
+        <input
+          type="text"
+          id="deliveryTime"
+          value="<%= food.deliveryTime %>"
+          name="listing[deliveryTime]"
+          class="form-control"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="isVeg" class="form-label">Food Type</label>
+        <select
+          id="isVeg"
+          name="listing[isVeg]"
+          class="form-select"
+          required
+        >
+          <option value="true" <%= food.isVeg ? "selected" : "" %>>Veg</option>
+          <option value="false" <%= !food.isVeg ? "selected" : "" %>>Non-Veg</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-dark mb-3 edit-btn">
+        Update Food
+      </button>
+    </form>
+  </div>
+</div>

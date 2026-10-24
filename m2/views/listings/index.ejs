@@ -1,0 +1,63 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Popular Food Items</h3>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+
+    <% for (let food of allListings) { %> 
+      <div class="col">
+        <a href="/listings/<%= food._id %>" class="listing-link text-decoration-none">
+
+          <div class="card listing-card h-100">
+
+            <div class="card-body">
+              <span class="badge bg-success mb-2">
+                <%= food.isVeg ? "Veg" : "Non-Veg" %>
+              </span>
+
+              <h5 class="card-title text-dark">
+                <%= food.name %>
+              </h5>
+
+              <p class="card-text text-muted mb-2">
+                <%= food.description %>
+              </p>
+
+              <p class="card-text text-dark mb-2">
+                <strong>Category:</strong>
+                <%= food.category %>
+              </p>
+
+              <p class="card-text text-dark mb-2">
+                <strong>Restaurant:</strong>
+                <%= food.restaurant %>
+              </p>
+
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <strong class="text-dark">
+                  ₹<%= food.price.toLocaleString("en-IN") %>
+                </strong>
+
+                <span class="text-muted">
+                  <i class="fa-regular fa-clock"></i>
+                  <%= food.deliveryTime %>
+                </span>
+              </div>
+
+              <p class="mt-2 mb-0 text-warning">
+                <i class="fa-solid fa-star"></i>
+                <%= food.rating %>/5
+              </p>
+            </div>
+
+          </div>
+        </a>
+      </div>
+    <% } %>
+
+  </div>
+</div>
+   
+
