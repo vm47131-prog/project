@@ -1,21 +1,29 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
-const MONGO_URL = "mongodb://127.0.0.1:27017/foodDelivery";
+const MONGO_URL = process.env.MONGO_URL;
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const ExpressError = require("./utils/ExpressError.js");
+const cors = require("cors");
 const User = require("./models/user.js");
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const authApiRouter = require("./routes/authApi.js");
 const Food = require("./models/food.js");
-const cors = require("cors");
+const cartApiRouter = require("./routes/cartApi.js");
+const orderApiRouter = require("./routes/orderApi.js");
+const adminApi = require("./routes/adminApi.js");
+const foodApiRouter = require("./routes/foodApi.js");
+
 main()
   .then(() => {
     console.log("connected to DB");
@@ -25,11 +33,18 @@ main()
   });
 async function main() {
   await mongoose.connect(MONGO_URL);
+  console.log("Connected to MongoDB");
 }
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
@@ -73,11 +88,6 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter); ///listings/:id/reviews => parent route
 app.use("/", userRouter);
 //
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-  }),
-);
 // NEW API ROUTE — yahan add karo
 app.get("/api/foods", async (req, res) => {
   try {
@@ -90,15 +100,36 @@ app.get("/api/foods", async (req, res) => {
     });
   }
 });
+app.use("/api", authApiRouter);
+app.use("/api/cart", cartApiRouter);
+app.use("/api/orders", orderApiRouter);
+app.use("/api/admin", adminApi);
+app.use("/api/admin", foodApiRouter);
 
 // Error handling
 app.all("{*path}", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));
 });
 app.use((err, req, res, next) => {
-  let { status = 500, message = "some error Occured" } = err;
-  // res.status(status).send(message);
-  res.status(status).render("error.ejs", { message });
+  console.error(err);
+
+  const status = err.status || err.statusCode || 500;
+
+  // React API requests should receive JSON
+  if (req.originalUrl.startsWith("/api/")) {
+    return res.status(status).json({
+      success: false,
+      message:
+        status >= 500
+          ? "Internal server error. Check backend terminal."
+          : err.message,
+    });
+  }
+
+  // Existing EJS pages continue to receive HTML
+  res.status(status).render("error.ejs", {
+    message: err.message || "Something went wrong",
+  });
 });
 app.listen(8080, () => {
   console.log("server is listining to port 8080");
